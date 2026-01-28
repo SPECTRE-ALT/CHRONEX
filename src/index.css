@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+    --color-chronex-bg: #030303;
+    --color-chronex-card: #080808;
+    --color-chronex-accent: #ccff00;
+    --color-chronex-alert: #ff3333;
+    --color-chronex-success: #00ff88;
+    --color-chronex-muted: #1a1a1a;
+    --color-chronex-text: #ffffff;
+    --color-chronex-text-muted: #666666;
+
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+
+    /* --- Shadows (Fix for Arbitrary Value Issues) --- */
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    --shadow-glass-hover: 0 8px 32px 0 rgba(204, 255, 0, 0.05);
+    --shadow-neon: 0 0 30px rgba(204, 255, 0, 0.3);
+
+    --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animate-float: float 6s ease-in-out infinite;
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes scan {
+        0% {
+            top: 0%;
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            top: 100%;
+            opacity: 0;
+        }
+    }
+}
+
+@layer base {
+    body {
+        @apply bg-chronex-bg text-chronex-text overflow-x-hidden selection:bg-chronex-accent selection:text-chronex-bg antialiased;
+        font-feature-settings: "cv11", "ss01";
+    }
+
+    /* Noise Texture Overlay */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 50;
+        mix-blend-mode: overlay;
+    }
+}
+
+@layer components {
+
+    /* Hyper-Premium Glass Panel */
+    .glass-panel {
+        @apply bg-[#0a0a0a]/80 backdrop-blur-2xl border border-white/5 rounded-3xl shadow-glass;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .glass-panel:hover {
+        @apply border-chronex-accent/20 shadow-glass-hover transform -translate-y-1;
+    }
+
+    .glass-btn {
+        @apply px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all active:scale-95 flex items-center justify-center gap-2 text-sm font-medium tracking-wide;
+    }
+
+    /* Typography */
+    .display-heading {
+        @apply font-bold tracking-tighter text-white leading-[0.9];
+    }
+
+    .label-text {
+        @apply font-mono text-xs uppercase tracking-[0.2em] text-chronex-text-muted;
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40;
+    }
+
+    /* Utility */
+    .btn-primary {
+        @apply px-6 py-3 bg-chronex-accent text-black font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#b3ff00] hover:shadow-neon transition-all duration-300 active:scale-95 flex items-center gap-2;
+    }
+}
+
+/* Custom Scrollbar - Sleek */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
