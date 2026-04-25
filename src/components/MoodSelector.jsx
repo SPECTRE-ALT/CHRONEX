@@ -11,7 +11,7 @@ const moods = [
 export function MoodSelector({ onChange }) {
     const [selected, setSelected] = useState('neutral');
 
-    const handleSelect = (id) => {
+    const handleSelect = (id) => { //gay bala skibidi 
         setSelected(id);
         if (onChange) onChange(id);
     };

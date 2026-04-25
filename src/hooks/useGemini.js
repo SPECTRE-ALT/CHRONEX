@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-const API_KEY = "USE YOUR OWN API!";
+const API_KEY = "sk-hc-v1-c05deaa0bdd944148bef29effa7f4e5283b7bd26ea4241aaaaa4480e6803e586";
 const API_URL = "/api/ai/chat/completions";
 
 export const useGemini = () => {

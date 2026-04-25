@@ -26,7 +26,9 @@ export function PostureAlert({ active, message, onDismiss }) {
                                 <AlertTriangle size={48} />
                             </motion.div>
 
-                            <h2 className="text-4xl font-bold text-white mb-4 tracking-tighter">POSTURE CRITICAL</h2>
+                            <h2 className="text-4xl font-bold text-white mb-4 tracking-tighter">
+                                {message && message.toLowerCase().includes('water') ? 'HYDRATION REMINDER' : 'POSTURE CRITICAL'}
+                            </h2>
                             <p className="text-xl text-red-400 font-mono mb-12 uppercase tracking-widest">{message || "Please correct your head position immediately."}</p>
 
                             <button
