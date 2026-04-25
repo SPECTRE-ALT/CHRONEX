@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
-const API_KEY = "sk-hc-v1-c05deaa0bdd944148bef29effa7f4e5283b7bd26ea4241aaaaa4480e6803e586";
-const API_URL = "/api/ai/chat/completions";
+const API_KEY = import.meta.env.VITE_HACKCLUB_KEY;
+const API_URL = "https://ai.hackclub.com/proxy/v1/chat/completions";
 
 export const useGemini = () => {
     const [loading, setLoading] = useState(false);
